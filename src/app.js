@@ -1,44 +1,31 @@
-//import {Matrix} from './initialState.js';
+let userData = '';
+let domLink = document.querySelectorAll('[data-link]');
+let domChange = document.querySelectorAll('[data-change]');
 
-let store = {
-    PlayerData : {
-    'Name': '',
-    'XP': 0,
-    'Level': 1
-  }
-};
+function domRender(variable, newData) {
+    console.log(newData);
+    domLink.forEach(domItem => {
+        if (domItem.dataset.link === variable) {
+            domItem.innerHTML = newData;
+        }
+    });
 
-function changeStore (store) {
-    
-    let NewName = {Name: 'ASS-FACE'};
-    const newStore = {
-      ...store,
-      PlayerData: {...NewName, ...store.PlayerData}
-    };
-    return (newStore);
+    domChange.forEach(domItem => {
+        if (domItem.dataset.change === variable) {
+            domItem.value = newData;
+        }
+    });
 }
 
-console.log(123);
+function domAddEventListener() {
+    domChange.forEach(domItem => {
+        domItem.addEventListener("change", onChange);
+    });
+}
 
-console.log(store);
-store = changeStore(store);
-console.log(store);
-//var xxx = document.querySelectorAll("div");
-/*
-var xxx = document.querySelectorAll('[data-link]');
-console.log(xxx);
-console.log(xxx[0].dataset);
-console.log(xxx[0].dataset.link);
-*/
+function onChange (e) {
+    domRender(e.srcElement.dataset.change, e.srcElement.value.replace(/ +[^a-zA-Z0-9]/g, ""));
+}
 
-
-//xxx[0].innerHTML = '687';
-/*
- * "[data-foo='1']"
-NewMatrix();
-let someObject = {};
-let newObject = {...someObject, aProperty: true};
-console.log(Matrinx);
-console.log('dupa')
-*/
-
+domRender('userData', userData);
+domAddEventListener('userData');

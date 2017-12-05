@@ -21,5 +21,15 @@ var webpack = require('webpack');
      stats: {
          colors: true
      },
-     devtool: 'source-map'
+     watch: true,
+     devtool: 'source-map',
  };
+
+/*
+module.exports = {
+    entry: "./app.js",
+    output: {
+        filename: "bundle.js"
+    },
+    watch: true
+}*/

@@ -70,49 +70,37 @@
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var userData = '';
+var domLink = document.querySelectorAll('[data-link]');
+var domChange = document.querySelectorAll('[data-change]');
 
-//import {Matrix} from './initialState.js';
-
-var store = {
-    PlayerData: {
-        'Name': '',
-        'XP': 0,
-        'Level': 1
-    }
-};
-
-function changeStore(store) {
-
-    var NewName = { Name: 'ASS-FACE' };
-    var newStore = _extends({}, store, {
-        PlayerData: _extends({}, NewName, store.PlayerData)
+function domRender(variable, newData) {
+    console.log(newData);
+    domLink.forEach(function (domItem) {
+        if (domItem.dataset.link === variable) {
+            domItem.innerHTML = newData;
+        }
     });
-    return newStore;
+
+    domChange.forEach(function (domItem) {
+        if (domItem.dataset.change === variable) {
+            domItem.value = newData;
+        }
+    });
 }
 
-console.log(123);
+function domAddEventListener() {
+    domChange.forEach(function (domItem) {
+        domItem.addEventListener("change", onChange);
+    });
+}
 
-console.log(store);
-store = changeStore(store);
-console.log(store);
-//var xxx = document.querySelectorAll("div");
-/*
-var xxx = document.querySelectorAll('[data-link]');
-console.log(xxx);
-console.log(xxx[0].dataset);
-console.log(xxx[0].dataset.link);
-*/
+function onChange(e) {
+    domRender(e.srcElement.dataset.change, e.srcElement.value.replace(/ +[^a-zA-Z0-9]/g, ""));
+}
 
-//xxx[0].innerHTML = '687';
-/*
- * "[data-foo='1']"
-NewMatrix();
-let someObject = {};
-let newObject = {...someObject, aProperty: true};
-console.log(Matrinx);
-console.log('dupa')
-*/
+domRender('userData', userData);
+domAddEventListener('userData');
 
 /***/ })
 /******/ ]);
