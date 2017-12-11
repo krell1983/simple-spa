@@ -82,10 +82,16 @@ var globalState = initialState;
 
 
 globalState = (0, _simpleSPA.renderDom)(globalState);
-globalState = (0, _simpleSPA.globalStateChange)(globalState, 'globalState.user.userNumber', 10);
 
-document.getElementById("myBtn").addEventListener("click", function () {
-    document.getElementById("demo").innerHTML = "Hello World";
+/* APP Code */
+function callButton(e) {
+    var callNumber = -Number(e.srcElement.innerHTML);
+    (0, _simpleSPA.globalStateChange)(globalState, 'globalState.user.userNumber', globalState.user.userNumber - callNumber);
+}
+
+var DomButtons = document.querySelectorAll('[data-button-calc]');
+DomButtons.forEach(function (domItem) {
+    domItem.addEventListener("click", callButton);
 });
 
 /***/ }),
@@ -133,11 +139,21 @@ function renderDom(globalState, state) {
 }
 
 function globalStateChange(globalState, state, value) {
-    console.log(globalState);
-    console.log('%c[Global State Change]:' + '%c ' + state + ':%c' + value, 'background: #1e5adb; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#1e5adb;');
-    eval(state + ' = "' + value + '"');
-    initSimpleSPA(globalState, state, value);
-    return globalState;
+
+    if (eval('' + state) === value) {
+        console.log('%c[Global State No Change Same Value]:' + '%c ' + state + ':%c' + value, 'background: #084cb2; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#084cb2;');
+    } else {
+        console.log('%c[Global State]:' + '%c ' + state + ':%c' + eval('' + state), 'background: #e07300; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#e07300;');
+        console.log('%c[Global State Change]:' + '%c ' + state + ':%c' + value, 'background: #007a0a; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#007a0a;');
+
+        if (typeof value === 'number') {
+            eval(state + ' = ' + value);
+        } else {
+            eval(state + ' = "' + value + '"');
+        }
+        renderDom(globalState, state, value);
+        return globalState;
+    }
 }
 
 /***/ }),
@@ -154,7 +170,7 @@ var user = exports.user = {
         userFirstName: 'name1',
         userSecondName: 'secondName',
         userNumber: 1,
-        testArray: [0, 1, 2, 4, 5],
+        numberOperators: [0, 1, 2, 4, 5, 6, 7, 8, 9, 10],
         testObject: {
                 test1: 1,
                 test2: 2,

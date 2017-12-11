@@ -30,9 +30,20 @@ export function renderDom(globalState, state) {
 }
 
 export function globalStateChange(globalState ,state, value) {
-    console.log(globalState);
-    console.log('%c[Global State Change]:' + '%c ' + state + ':%c' + value, 'background: #1e5adb; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#1e5adb;');
-    eval(`${state} = "${value}"`);
-    initSimpleSPA(globalState ,state, value);
-    return globalState
+
+    if(eval(`${state}`) === value){
+        console.log('%c[Global State No Change Same Value]:' + '%c ' + state + ':%c' + value, 'background: #084cb2; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#084cb2;');
+    } else {
+        console.log('%c[Global State]:' + '%c ' + state + ':%c' + eval(`${state}`), 'background: #e07300; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#e07300;');
+        console.log('%c[Global State Change]:' + '%c ' + state + ':%c' + value, 'background: #007a0a; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#007a0a;');
+
+        if(typeof value === 'number') {
+            eval(`${state} = ${value}`);
+        }else {
+            eval(`${state} = "${value}"`);
+        }
+        renderDom(globalState ,state, value);
+        return globalState
+    }
+
 }
