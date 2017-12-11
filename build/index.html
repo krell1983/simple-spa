@@ -1,15 +1,106 @@
 <!DOCTYPE html>
+<head>
+    <title>AAAA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 <html>
 <body>
+<!-- v1
+<div class="box">
+    <div><span data-link="userData"></span></div>
+    <div><span data-link="userData"></span></div>
+    <div><span data-link="userData"></span></div>
 
-<div><span data-link="userData"></span></div>
-<div><span data-link="userData"></span></div>
-<div><span data-link="userData"></span></div>
+    <div><input data-change="userData"/></div>
+    <div><input data-change="userData"/></div>
+    <div><input data-change="userData"/></div>
+</div>
 
-<div><input data-change="userData"/></div>
-<div><input data-change="userData"/></div>
-<div><input data-change="userData"/></div>
+<div class="box">
+    <div>
+        <button>Up</button>
+        <span data-link="userNumber"></span>
+        <button>Down</button>
+    </div>
+    <div>
+        <button>Up</button>
+        <span data-link="userNumber"></span>
+        <button>Down</button>
+    </div>
+</div> -->
+
+<div class="box">
+    <h5>globalState.user.userFirstName</h5>
+    <div>
+        <div>Name: <span data-link="globalState.user.userFirstName"></span>
+            <input data-change="globalState.user.userFirstName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userFirstName"></span>
+            <input data-change="globalState.user.userFirstName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userFirstName"></span>
+            <input data-change="globalState.user.userFirstName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userFirstName"></span>
+            <input data-change="globalState.user.userFirstName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userFirstName"></span>
+            <input data-change="globalState.user.userFirstName"/></div>
+    </div>
+</div>
+
+
+<div class="box">
+    <h5>globalState.user.userSecondName</h5>
+    <div>
+        <div>Name: <span data-link="globalState.user.userSecondName"></span>
+            <input data-change="globalState.user.userSecondName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userSecondName"></span>
+            <input data-change="globalState.user.userSecondName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userSecondName"></span>
+            <input data-change="globalState.user.userSecondName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userSecondName"></span>
+            <input data-change="globalState.user.userSecondName"/></div>
+    </div>
+    <div>
+        <div>Name: <span data-link="globalState.user.userSecondName"></span>
+            <input data-change="globalState.user.userSecondName"/></div>
+    </div>
+</div>
+
+<div class="box">
+    <div>
+        userNumber:
+        <span data-link="globalState.user.userNumber"></span>
+    </div>
+    <h5 data-link="globalState.user.userNumber"></h5>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>10</button>
+</div>
 
 <script src="main.bundle.js"></script>
+
 </body>
 </html>
