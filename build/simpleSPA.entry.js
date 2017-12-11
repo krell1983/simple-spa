@@ -60,55 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _initialState = __webpack_require__(3);
-
-var initialState = _interopRequireWildcard(_initialState);
-
-var _simpleSPA = __webpack_require__(2);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var globalState = initialState;
-
-
-globalState = (0, _simpleSPA.renderDom)(globalState);
-globalState = (0, _simpleSPA.globalStateChange)(globalState, 'globalState.user.userNumber', 10);
-
-document.getElementById("myBtn").addEventListener("click", function () {
-    document.getElementById("demo").innerHTML = "Hello World";
-});
-
-/***/ }),
-/* 1 */,
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.renderDom = renderDom;
-exports.globalStateChange = globalStateChange;
-function renderDom(globalState, state) {
-
+function initSimpleSPA(state) {
     var domLink = document.querySelectorAll('[data-link]');
     var domChange = document.querySelectorAll('[data-change]');
-
-    function onSimpleSPAChange(e) {
-        globalStateChange(globalState, e.srcElement.dataset.change, e.srcElement.value.replace(/[^a-zA-Z0-9 ]/g, ""));
-    }
 
     domLink.forEach(function (domItem) {
         var selector = domItem.dataset.link;
@@ -124,44 +89,22 @@ function renderDom(globalState, state) {
         }
     });
 
-    if (!state) {
-        domChange.forEach(function (domItem) {
-            domItem.addEventListener("change", onSimpleSPAChange);
-        });
-    }
-    return globalState;
+    domChange.forEach(function (domItem) {
+        domItem.addEventListener("change", onSimpleSPAChange);
+    });
 }
 
-function globalStateChange(globalState, state, value) {
-    console.log(globalState);
+function onSimpleSPAChange(e) {
+    globalStateChange(e.srcElement.dataset.change, e.srcElement.value.replace(/[^a-zA-Z0-9 ]/g, ""));
+}
+
+function globalStateChange(state, value) {
     console.log('%c[Global State Change]:' + '%c ' + state + ':%c' + value, 'background: #1e5adb; color:#fff; padding:2px;', 'font-weight: bold;', 'font-weight: bold; color:#1e5adb;');
     eval(state + ' = "' + value + '"');
-    initSimpleSPA(globalState, state, value);
-    return globalState;
+    initSimpleSPA(state, value);
 }
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-        value: true
-});
-var user = exports.user = {
-        userFirstName: 'name1',
-        userSecondName: 'secondName',
-        userNumber: 1,
-        testArray: [0, 1, 2, 4, 5],
-        testObject: {
-                test1: 1,
-                test2: 2,
-                test3: 3
-        }
-};
-
 /***/ })
-/******/ ]);
-//# sourceMappingURL=main.bundle.js.map
+
+/******/ });
+//# sourceMappingURL=simpleSPA.entry.js.map
